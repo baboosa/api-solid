@@ -4,7 +4,7 @@ import { z } from 'zod'
 
 export async function create(request: FastifyRequest, reply: FastifyReply) {
   const paramsSchema = z.object({
-    gymId: z.string(),
+    gymId: z.string().uuid(),
   })
 
   const bodySchema = z.object({
