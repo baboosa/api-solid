@@ -7,10 +7,6 @@ jobs:
     name: Run e2e tests
     runs-on: ubuntu-latest
 
-    env:
-      DATABASE_URL: postgresql://docker:docker@postgres:5432/apisolid?schema=public
-      JWT_SECRET: testing-secret
-
     services:
       postgres:
         image: bitnami/postgresql
@@ -19,7 +15,7 @@ jobs:
           POSTGRESQL_PASSWORD: docker
           POSTGRESQL_DATABASE: apisolid
         options: >-
-          --health-cmd="pg_isready -U postgres -d apisolid"
+          --health-cmd="pg_isready -U postgres"
           --health-interval 5s
           --health-timeout 5s
           --health-retries 20
@@ -39,3 +35,6 @@ jobs:
 
       - name: Run e2e tests
         run: npm run test:e2e
+        env:
+          DATABASE_URL: "postgresql://docker:docker@postgres:5432/apisolid?schema=public"
+          JWT_SECRET: testing
