@@ -179,11 +179,12 @@ const config = {
     "db"
   ],
   "activeProvider": "postgresql",
+  "postinstall": true,
   "inlineDatasources": {
     "db": {
       "url": {
         "fromEnvVar": "DATABASE_URL",
-        "value": "postgresql://docker:docker@localhost:5432/apisolid?schema=public"
+        "value": null
       }
     }
   },
