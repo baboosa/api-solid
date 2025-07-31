@@ -15,9 +15,9 @@ jobs:
       postgres:
         image: bitnami/postgresql
         env:
-          POSTGRESQL_USERNAME: docker
-          POSTGRESQL_PASSWORD: docker
-          POSTGRESQL_DATABASE: apisolid
+          POSTGRES_USER: docker
+          POSTGRES_PASSWORD: docker
+          POSTGRES_DB: apisolid
         options: >-
           --health-cmd="pg_isready -U docker -d apisolid"
           --health-interval 10s
