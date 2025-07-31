@@ -35,5 +35,5 @@ jobs:
 
       - run: npm run test:e2e
         env:
-          DATABASE_URL: "postgresql://docker:docker@apisolid:5432/apisolid?schema=public"
+          DATABASE_URL: "postgresql://docker:docker@postgres:5432/apisolid?schema=public"
           JWT_SECRET: testing
