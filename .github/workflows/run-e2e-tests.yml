@@ -15,14 +15,14 @@ jobs:
       postgres:
         image: bitnami/postgresql
         env:
-          POSTGRES_USER: docker
-          POSTGRES_PASSWORD: docker
-          POSTGRES_DB: apisolid
+          POSTGRESQL_USERNAME: docker
+          POSTGRESQL_PASSWORD: docker
+          POSTGRESQL_DATABASE: apisolid
         options: >-
-          --health-cmd="pg_isready -U docker -d apisolid"
-          --health-interval 10s
+          --health-cmd="pg_isready -U postgres -d apisolid"
+          --health-interval 5s
           --health-timeout 5s
-          --health-retries 10
+          --health-retries 20
 
     steps:
       - name: Checkout code
@@ -33,17 +33,6 @@ jobs:
         with:
           node-version: '20'
           cache: 'npm'
-
-      - name: Install PostgreSQL client
-        run: sudo apt-get install -y postgresql-client
-
-      - name: Wait for PostgreSQL to be ready
-        run: |
-          for i in {1..15}; do
-            pg_isready -h postgres -p 5432 -U docker && break
-            echo "Waiting for PostgreSQL to be ready..."
-            sleep 2
-          done
 
       - name: Install dependencies
         run: npm ci
