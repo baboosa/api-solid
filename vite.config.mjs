@@ -4,7 +4,10 @@ import tsconfigPaths from 'vite-tsconfig-paths'
 export default defineConfig({
   plugins: [tsconfigPaths()],
   test: {
-    environment: './prisma/vitest-environment-prisma',
     globals: true,
+    environment: 'node',
+    environmentMatchGlobs: [
+      ['src/http/**', './prisma/vitest-environment-prisma'],
+    ],
   },
 })

@@ -19,6 +19,7 @@ describe('Get user profile use case', () => {
       email: 'john@example.com',
       password_hash: await hash('123456', 10),
       created_at: new Date(),
+      role: 'MEMBER',
     })
 
     const { user } = await sut.execute({
@@ -43,6 +44,7 @@ describe('Get user profile use case', () => {
       email: 'john@example.com',
       password_hash: await hash('123456', 10),
       created_at: new Date(),
+      role: 'MEMBER',
     })
 
     await expect(() =>
